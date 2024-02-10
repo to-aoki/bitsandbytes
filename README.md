@@ -9,6 +9,41 @@ Resources:
 
 - [LLM.int8() Paper](https://arxiv.org/abs/2208.07339) -- [LLM.int8() Software Blog Post](https://huggingface.co/blog/hf-bitsandbytes-integration) -- [LLM.int8() Emergent Features Blog Post](https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/)
 
+# for jetson orin agx
+
+enviroment 6.0DP, [dustynv/auto_gptq:r36.2.0](https://hub.docker.com/layers/dustynv/auto_gptq/r36.2.0/images/sha256-1ad1cbd36be3e933636358bbe83b79eda3e766a7cccd2be487d62d3583db83e4?context=explore)
+
+```bash
+git clone https://github.com/to-aoki/bitsandbytes
+
+cd bitsandbytes
+CUDA_VERSION=122 make cuda12x
+
+pip3 install scipy
+python3 -m bitsandbytes
+:
+++++++++++++++++++++++++++ OTHER +++++++++++++++++++++++++++
+COMPILED_WITH_CUDA = True
+COMPUTE_CAPABILITIES_PER_GPU = ['8.7']
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++ DEBUG INFO END ++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Running a quick check that:
+    + library is importable
+    + CUDA function is callable
+
+
+WARNING: Please be sure to sanitize sensible info from any such env vars!
+
+SUCCESS!
+Installation was successful!
+
+pip3 list | grep bitsandbytes
+bitsandbytes       0.41.2           /home/user/temp/bitsandbytes
+
+```
+
 ## TL;DR
 **Requirements**
 Python >=3.8. Linux distribution (Ubuntu, MacOS, etc.) + CUDA > 10.0.
